@@ -1,0 +1,54 @@
+int greenLed = D1;
+int blueLed = D2;
+int redLed = D3;
+
+
+void setup() {
+    pinMode(greenLed, OUTPUT);
+    pinMode(redLed, OUTPUT);
+    pinMode(blueLed, OUTPUT);
+    digitalWrite(greenLed, HIGH);
+    digitalWrite(redLed, HIGH);
+    digitalWrite(blueLed, HIGH);
+    delay(1000);
+    digitalWrite(greenLed, LOW);
+    digitalWrite(redLed, LOW);
+    digitalWrite(blueLed, LOW);
+    Particle.function("ledSwitch", ledSwitch);
+}
+
+void loop() {
+    
+   
+}
+
+int ledSwitch(String newColour) {
+    if(newColour == "red") {
+        if (digitalRead(redLed) == LOW) {
+            digitalWrite(redLed, HIGH);
+            return 1;
+        } else {
+            digitalWrite(redLed, LOW);
+            return 1;
+        }
+    }
+    if(newColour == "green") {
+        if (digitalRead(greenLed) == LOW) {
+            digitalWrite(greenLed, HIGH);
+            return 1;
+        } else {
+            digitalWrite(greenLed, LOW);
+            return 1;
+        }
+    }
+    if(newColour == "blue") {
+        if (digitalRead(blueLed) == LOW) {
+            digitalWrite(blueLed, HIGH);
+            return 1;
+        } else {
+            digitalWrite(blueLed, LOW);
+            return 1;
+        }
+    }
+    return -1;
+}
